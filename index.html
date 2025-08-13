@@ -53,6 +53,22 @@
     tbody td{padding:9px 12px;border-bottom:1px solid #f1f3f5}
     tbody tr:last-child td{border-bottom:none}
     .help{margin:8px 0 0;color:var(--sub);font-size:13px}
+      /* 표 래퍼: 모바일 가로 스크롤 */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  /* 표: 최소 너비 확보 + 고정 레이아웃 */
+  .schedule-table{
+    width:100%;min-width:560px;table-layout:fixed;
+    border-collapse:separate;border-spacing:0;border:1px solid #e9ecef;border-radius:10px;overflow:hidden;
+  }
+  .schedule-table th,.schedule-table td{
+    padding:9px 12px;border-bottom:1px solid #f1f3f5;
+    word-break:keep-all;white-space:normal; /* 글자 하나씩 줄바꿈 방지 */
+  }
+  .schedule-table thead th{background:#f8f9fa;color:#495057;border-bottom:1px solid #e9ecef;font-size:14px;text-align:left}
+  /* 날짜/시간은 줄바꿈 없이 */
+  .schedule-table th:nth-child(1),.schedule-table td:nth-child(1),
+  .schedule-table th:nth-child(2),.schedule-table td:nth-child(2){white-space:nowrap}
+  @media (min-width:960px){ .schedule-table{min-width:unset} }
 
     @media (min-width:960px){
       .grid{grid-template-columns:1fr 1.2fr}
@@ -104,38 +120,40 @@
 
         <!-- 오른쪽: 날짜별 일정 표 -->
         <div>
-          <div class="table-title">날짜별 일정 표</div>
-          <table>
-            <thead>
-              <tr>
-                <th style="width:120px">날짜</th>
-                <th style="width:90px">시간</th>
-                <th>일정/장소</th>
-                <th style="width:220px">메모</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>YYYY-MM-DD</td>
-                <td>09:00</td>
-                <td>예) 공항 → 호텔 체크인</td>
-                <td>비고</td>
-              </tr>
-              <tr>
-                <td>YYYY-MM-DD</td>
-                <td>13:00</td>
-                <td>예) 맛집/관광지</td>
-                <td>비고</td>
-              </tr>
-              <tr>
-                <td>YYYY-MM-DD</td>
-                <td>19:00</td>
-                <td>예) 야경/쇼핑</td>
-                <td>비고</td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="help">필요하면 표 행/열을 늘려서 사용하세요.</p>
+<div class="table-title">날짜별 일정 표</div>
+<div class="table-wrap">
+  <table class="schedule-table">
+    <thead>
+      <tr>
+        <th>날짜</th>
+        <th>시간</th>
+        <th>일정/장소</th>
+        <th>메모</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>YYYY-MM-DD</td>
+        <td>09:00</td>
+        <td>예) 공항 → 호텔 체크인</td>
+        <td>비고</td>
+      </tr>
+      <tr>
+        <td>YYYY-MM-DD</td>
+        <td>13:00</td>
+        <td>예) 맛집/관광지</td>
+        <td>비고</td>
+      </tr>
+      <tr>
+        <td>YYYY-MM-DD</td>
+        <td>19:00</td>
+        <td>예) 야경/쇼핑</td>
+        <td>비고</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="help">필요하면 표 행/열을 늘려서 사용하세요.</p>
         </div>
       </div>
     </section>
