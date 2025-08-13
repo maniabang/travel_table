@@ -1,369 +1,144 @@
-<!-- Travel Planner (Responsive, No dependencies) -->
-<section id="travel-planner">
-  <div class="tp-container">
-    <header class="tp-header">
-      <h2>✈️ 여행 일정 만들기</h2>
-      <p class="tp-sub">여행 기본 정보를 입력하고 날짜별 일정을 추가하세요</p>
-    </header>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>여행 일정 기본 폼</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#f8f9fb;
+      --card:#fff;
+      --text:#2b2f33;
+      --sub:#6c757d;
+      --line:#e9ecef;
+      --primary:#667eea;
+      --primary2:#764ba2;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;background:var(--bg);color:var(--text);
+      font-family:"Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+      line-height:1.6;
+    }
+    .wrap{max-width:1100px;margin:0 auto;padding:24px 16px;}
+    .card{
+      background:var(--card);border:1px solid var(--line);border-radius:12px;
+      box-shadow:0 2px 10px rgba(0,0,0,.05);overflow:hidden;
+    }
+    .hero{
+      background:linear-gradient(135deg,var(--primary),var(--primary2));
+      color:#fff;padding:22px 20px;
+    }
+    .hero h1{margin:0 0 6px;font-size:24px}
+    .hero p{margin:0;opacity:.9;font-size:14px}
 
-    <div class="tp-grid">
-      <!-- Trip Meta -->
-      <aside class="tp-meta">
-        <div class="tp-card">
-          <h3>여행 기본 정보</h3>
-          <div class="tp-field">
-            <label for="tp-title">여행 제목</label>
-            <input id="tp-title" type="text" placeholder="예) 오사카 3박4일" />
+    .grid{display:grid;grid-template-columns:1fr;gap:18px;padding:20px}
+    .fieldcol{display:grid;grid-template-columns:1fr;gap:12px}
+    label{font-size:14px;font-weight:600;color:#333;display:block}
+    .input{
+      width:100%;margin-top:6px;padding:10px 12px;border:1px solid var(--line);
+      border-radius:10px;background:#fff;font-size:14px;outline:none;
+    }
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+    .table-title{font-weight:600;color:#333}
+    table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+    thead th{
+      background:#f8f9fa;color:#495057;text-align:left;font-size:14px;
+      padding:10px 12px;border-bottom:1px solid var(--line)
+    }
+    tbody td{padding:9px 12px;border-bottom:1px solid #f1f3f5}
+    tbody tr:last-child td{border-bottom:none}
+    .help{margin:8px 0 0;color:var(--sub);font-size:13px}
+
+    @media (min-width:960px){
+      .grid{grid-template-columns:1fr 1.2fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="card">
+      <div class="hero">
+        <h1>✈️ 여행 일정 기본 폼</h1>
+        <p>나중에 복사해 채우는 용도의 표입니다. 기능/저장은 없습니다.</p>
+      </div>
+
+      <div class="grid">
+        <!-- 왼쪽: 여행 기본 정보 -->
+        <div class="fieldcol">
+          <label>여행 제목
+            <input class="input" type="text" placeholder="예) 오사카 3박4일" />
+          </label>
+
+          <div class="row2">
+            <label>출발일
+              <input class="input" type="date" />
+            </label>
+            <label>도착일
+              <input class="input" type="date" />
+            </label>
           </div>
 
-          <div class="tp-row">
-            <div class="tp-field">
-              <label for="tp-start">출발일</label>
-              <input id="tp-start" type="date" />
-            </div>
-            <div class="tp-field">
-              <label for="tp-end">도착일</label>
-              <input id="tp-end" type="date" />
-            </div>
+          <div class="row2">
+            <label>출발지
+              <input class="input" type="text" placeholder="ICN / Seoul" />
+            </label>
+            <label>도착지
+              <input class="input" type="text" placeholder="KIX / Osaka" />
+            </label>
           </div>
 
-          <div class="tp-row">
-            <div class="tp-field">
-              <label for="tp-origin">출발지</label>
-              <input id="tp-origin" type="text" placeholder="ICN / Seoul" />
-            </div>
-            <div class="tp-field">
-              <label for="tp-destination">도착지</label>
-              <input id="tp-destination" type="text" placeholder="KIX / Osaka" />
-            </div>
-          </div>
-
-          <div class="tp-field">
-            <label for="tp-travelers">인원</label>
-            <input id="tp-travelers" type="number" min="1" value="1" />
-          </div>
-
-          <div class="tp-actions">
-            <button id="tp-generate" class="tp-btn primary">날짜별 섹션 만들기</button>
-            <button id="tp-clear" class="tp-btn ghost">초기화</button>
+          <div class="row2">
+            <label>인원
+              <input class="input" type="number" min="1" value="1" />
+            </label>
+            <label>예산(선택)
+              <input class="input" type="text" placeholder="예) 120만원" />
+            </label>
           </div>
         </div>
 
-        <div class="tp-card">
-          <h3>미리보기</h3>
-          <div class="tp-preview">
-            <div><strong>제목</strong> <span data-bind="title">-</span></div>
-            <div><strong>여정</strong> <span data-bind="route">-</span></div>
-            <div><strong>기간</strong> <span data-bind="period">-</span></div>
-            <div><strong>인원</strong> <span data-bind="people">-</span></div>
-          </div>
+        <!-- 오른쪽: 날짜별 일정 표 -->
+        <div>
+          <div class="table-title">날짜별 일정 표</div>
+          <table>
+            <thead>
+              <tr>
+                <th style="width:120px">날짜</th>
+                <th style="width:90px">시간</th>
+                <th>일정/장소</th>
+                <th style="width:220px">메모</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>YYYY-MM-DD</td>
+                <td>09:00</td>
+                <td>예) 공항 → 호텔 체크인</td>
+                <td>비고</td>
+              </tr>
+              <tr>
+                <td>YYYY-MM-DD</td>
+                <td>13:00</td>
+                <td>예) 맛집/관광지</td>
+                <td>비고</td>
+              </tr>
+              <tr>
+                <td>YYYY-MM-DD</td>
+                <td>19:00</td>
+                <td>예) 야경/쇼핑</td>
+                <td>비고</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="help">필요하면 표 행/열을 늘려서 사용하세요.</p>
         </div>
-      </aside>
-
-      <!-- Itinerary Builder -->
-      <main class="tp-itinerary">
-        <div class="tp-card">
-          <div class="tp-itin-header">
-            <h3>날짜별 일정</h3>
-            <button id="tp-add-day" class="tp-btn small">+ 날짜 추가</button>
-          </div>
-
-          <div id="tp-days" class="tp-days">
-            <!-- Days will be injected here -->
-          </div>
-        </div>
-      </main>
-    </div>
-  </div>
-
-  <template id="tpl-day">
-    <section class="tp-day">
-      <header class="tp-day-head">
-        <div class="tp-day-title">
-          <span class="tp-chip">Day <span data-day-idx></span></span>
-          <h4 data-day-date>YYYY-MM-DD (ddd)</h4>
-        </div>
-        <div class="tp-day-actions">
-          <button class="tp-btn small outline tp-add-activity">+ 일정 추가</button>
-          <button class="tp-btn small ghost tp-remove-day">삭제</button>
-        </div>
-      </header>
-      <ul class="tp-activities"></ul>
+      </div>
     </section>
-  </template>
-
-  <template id="tpl-activity">
-    <li class="tp-activity">
-      <div class="tp-time">
-        <input type="time" value="09:00" />
-      </div>
-      <div class="tp-fields">
-        <input class="tp-input" type="text" placeholder="활동 제목 (예: 도톤보리 산책)" />
-        <div class="tp-row sm">
-          <input class="tp-input" type="text" placeholder="장소 / 주소" />
-          <input class="tp-input" type="text" placeholder="메모 (선택)" />
-        </div>
-      </div>
-      <button class="tp-icon-btn tp-remove-activity" title="삭제">✕</button>
-    </li>
-  </template>
-</section>
-
-<style>
-  /* Scoped styles */
-  #travel-planner {
-    --tp-bg: #f8f9fb;
-    --tp-card: #fff;
-    --tp-text: #2b2f33;
-    --tp-sub: #6c757d;
-    --tp-line: #e9ecef;
-    --tp-primary: #667eea;
-    --tp-primary-2: #764ba2;
-    --tp-chip: #eef2ff;
-    --tp-ok: #16a34a;
-
-    padding: 32px 16px;
-    background: var(--tp-bg);
-    color: var(--tp-text);
-  }
-  #travel-planner .tp-container {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  #travel-planner .tp-header h2 {
-    font-size: 28px;
-    margin-bottom: 6px;
-    background: linear-gradient(135deg, var(--tp-primary), var(--tp-primary-2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: 700;
-  }
-  #travel-planner .tp-sub {
-    color: var(--tp-sub);
-    margin-bottom: 18px;
-  }
-  #travel-planner .tp-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  #travel-planner .tp-card {
-    background: var(--tp-card);
-    border: 1px solid var(--tp-line);
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-  }
-  #travel-planner .tp-field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 12px;
-  }
-  #travel-planner label {
-    font-size: 13px;
-    color: var(--tp-sub);
-  }
-  #travel-planner input[type="text"],
-  #travel-planner input[type="date"],
-  #travel-planner input[type="number"],
-  #travel-planner input[type="time"] {
-    width: 100%;
-    border: 1px solid var(--tp-line);
-    border-radius: 10px;
-    padding: 10px 12px;
-    font-size: 14px;
-    outline: none;
-    transition: border .15s ease, box-shadow .15s ease;
-    background: #fff;
-  }
-  #travel-planner input:focus {
-    border-color: #b7c0ff;
-    box-shadow: 0 0 0 3px #eef2ff;
-  }
-  #travel-planner .tp-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  #travel-planner .tp-row.sm {
-    grid-template-columns: 1fr 1fr;
-  }
-  #travel-planner .tp-actions {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-  }
-  #travel-planner .tp-btn {
-    border: 1px solid transparent;
-    border-radius: 999px;
-    padding: 10px 14px;
-    font-size: 14px;
-    cursor: pointer;
-    background: #edf2ff;
-    color: #3142c6;
-    transition: transform .05s ease, box-shadow .2s ease, background .2s ease;
-  }
-  #travel-planner .tp-btn:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
-  #travel-planner .tp-btn:active { transform: translateY(1px); }
-  #travel-planner .tp-btn.primary {
-    background: linear-gradient(135deg, var(--tp-primary), var(--tp-primary-2));
-    color: #fff;
-  }
-  #travel-planner .tp-btn.ghost {
-    background: transparent;
-    border-color: var(--tp-line);
-    color: var(--tp-sub);
-  }
-  #travel-planner .tp-btn.small { padding: 8px 12px; font-size: 13px; }
-  #travel-planner .tp-btn.outline {
-    background: #fff;
-    border-color: #cbd5ff;
-    color: #3f51e5;
-  }
-
-  #travel-planner .tp-itin-header {
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 8px; margin-bottom: 6px;
-  }
-  #travel-planner .tp-days { display: flex; flex-direction: column; gap: 12px; }
-
-  #travel-planner .tp-day { border: 1px dashed var(--tp-line); border-radius: 12px; padding: 12px; background: #fff; }
-  #travel-planner .tp-day-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
-  #travel-planner .tp-day-title { display: flex; align-items: center; gap: 10px; }
-  #travel-planner .tp-chip { background: var(--tp-chip); color: #3949ab; font-weight: 600; padding: 4px 10px; border-radius: 999px; font-size: 12px; }
-  #travel-planner .tp-day h4 { margin: 0; font-size: 16px; }
-
-  #travel-planner .tp-activities { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-direction: column; gap: 8px; }
-  #travel-planner .tp-activity {
-    display: grid; grid-template-columns: 90px 1fr 36px; gap: 8px;
-    align-items: start; background: #fafbff; border: 1px solid #eef1ff; border-radius: 10px; padding: 8px;
-  }
-  #travel-planner .tp-time input { width: 100%; }
-  #travel-planner .tp-input { border: 1px solid var(--tp-line); border-radius: 8px; padding: 9px 10px; font-size: 14px; width: 100%; }
-  #travel-planner .tp-icon-btn {
-    width: 32px; height: 32px; border-radius: 8px; border: 1px solid #ffd5d5; background: #fff5f5; color: #c0392b; cursor: pointer;
-  }
-
-  #travel-planner .tp-preview { display: grid; gap: 6px; font-size: 14px; color: var(--tp-text); }
-  #travel-planner .tp-preview strong { color: var(--tp-sub); margin-right: 6px; }
-
-  /* Layout: desktop */
-  @media (min-width: 960px) {
-    #travel-planner .tp-grid { grid-template-columns: 360px 1fr; gap: 16px; }
-  }
-</style>
-
-<script>
-  (function travelPlanner() {
-    const $ = (sel, root = document) => root.querySelector(sel);
-    const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-
-    const binds = {
-      title: $('[data-bind="title"]'),
-      route: $('[data-bind="route"]'),
-      period: $('[data-bind="period"]'),
-      people: $('[data-bind="people"]'),
-    };
-
-    const el = {
-      title: $('#tp-title'),
-      start: $('#tp-start'),
-      end: $('#tp-end'),
-      origin: $('#tp-origin'),
-      dest: $('#tp-destination'),
-      travelers: $('#tp-travelers'),
-      generate: $('#tp-generate'),
-      clear: $('#tp-clear'),
-      addDay: $('#tp-add-day'),
-      daysWrap: $('#tp-days'),
-      tplDay: $('#tpl-day'),
-      tplAct: $('#tpl-activity'),
-    };
-
-    function fmtDate(d) {
-      const dt = new Date(d);
-      if (Number.isNaN(dt)) return '';
-      return dt.toISOString().slice(0,10);
-    }
-    const weekday = ['일','월','화','수','목','금','토'];
-
-    function updatePreview() {
-      binds.title.textContent = el.title.value || '-';
-      const route = [el.origin.value, el.dest.value].filter(Boolean).join(' → ') || '-';
-      binds.route.textContent = route;
-
-      const s = fmtDate(el.start.value);
-      const e = fmtDate(el.end.value);
-      if (s && e) {
-        const days = Math.max(1, Math.round((new Date(e)-new Date(s))/(1000*60*60*24))+1);
-        binds.period.textContent = `${s} ~ ${e} (${days}일)`;
-      } else {
-        binds.period.textContent = '-';
-      }
-      binds.people.textContent = el.travelers.value || '-';
-    }
-    ['input','change'].forEach(evt => {
-      [el.title, el.start, el.end, el.origin, el.dest, el.travelers].forEach(n => n.addEventListener(evt, updatePreview));
-    });
-    updatePreview();
-
-    function addDay(dateStr) {
-      const clone = document.importNode(el.tplDay.content, true);
-      const section = $('.tp-day', clone);
-      $('[data-day-date]', clone).textContent = dateStr
-        ? `${dateStr} (${weekday[new Date(dateStr).getDay()]})`
-        : '날짜 미정';
-      const idxSpan = $('[data-day-idx]', clone);
-      const idx = el.daysWrap.children.length + 1;
-      idxSpan.textContent = idx;
-
-      $('.tp-add-activity', clone).addEventListener('click', () => addActivity(section));
-      $('.tp-remove-day', clone).addEventListener('click', () => {
-        section.remove();
-        // reindex
-        $$('.tp-day').forEach((d, i) => d.querySelector('[data-day-idx]').textContent = i+1);
-      });
-
-      el.daysWrap.appendChild(clone);
-    }
-
-    function addActivity(daySection) {
-      const list = $('.tp-activities', daySection);
-      const item = document.importNode(el.tplAct.content, true);
-      $('.tp-remove-activity', item).addEventListener('click', (e) => {
-        e.currentTarget.closest('.tp-activity').remove();
-      });
-      list.appendChild(item);
-    }
-
-    // Generate days from start/end
-    el.generate.addEventListener('click', () => {
-      const s = new Date(el.start.value);
-      const e = new Date(el.end.value);
-      if (Number.isNaN(s) || Number.isNaN(e) || s > e) {
-        alert('출발일과 도착일을 올바르게 선택하세요.');
-        return;
-      }
-      el.daysWrap.innerHTML = '';
-      for (let d = new Date(s); d <= e; d.setDate(d.getDate()+1)) {
-        addDay(d.toISOString().slice(0,10));
-      }
-    });
-
-    // Manual add one day (no date)
-    el.addDay.addEventListener('click', () => addDay(''));
-
-    // Clear
-    el.clear.addEventListener('click', () => {
-      if (!confirm('모든 입력을 초기화할까요?')) return;
-      [el.title, el.origin, el.dest].forEach(i => i.value = '');
-      el.start.value = '';
-      el.end.value = '';
-      el.travelers.value = 1;
-      el.daysWrap.innerHTML = '';
-      updatePreview();
-    });
-  })();
-</script>
+  </div>
+</body>
+</html>
