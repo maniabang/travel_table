@@ -1,159 +1,92 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>세은이와 함께하는 북촌탐방</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet"/>
-  <style>
-    :root{
-      --bg:#f8f9fb; --card:#fff; --text:#2b2f33; --sub:#6c757d; --line:#e9ecef;
-      --primary:#667eea; --primary2:#764ba2;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0; background:var(--bg); color:var(--text);
-      font-family:"Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
-      line-height:1.6;
-    }
-    .wrap{max-width:1100px; margin:0 auto; padding:24px 16px;}
-    .card{background:var(--card); border:1px solid var(--line); border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,.05); overflow:hidden;}
-    .hero{background:linear-gradient(135deg,var(--primary),var(--primary2)); color:#fff; padding:22px 20px;}
-    .hero h1{margin:0 0 6px; font-size:24px;}
-    .hero p{margin:0; opacity:.9; font-size:14px;}
-
-    .grid{display:grid; grid-template-columns:1fr; gap:18px; padding:20px;}
-    .fieldcol{display:grid; grid-template-columns:1fr; gap:12px;}
-    label{font-size:14px; font-weight:600; color:#333; display:block;}
-    .input{
-      width:100%; margin-top:6px; padding:10px 12px; border:1px solid var(--line);
-      border-radius:10px; background:#fff; font-size:14px; outline:none;
-    }
-    .row2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
-
-    .table-title{font-weight:700; font-size:18px;}
-    .rtable{
-      width:100%; border-collapse:separate; border-spacing:0;
-      border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#fff;
-    }
-    .rtable thead th{
-      padding:10px 12px; background:#f8f9fa; color:#495057; border-bottom:1px solid var(--line);
-      text-align:left; font-size:14px; white-space:nowrap;
-    }
-    .rtable tbody td{
-      padding:10px 12px; border-bottom:1px solid #f1f3f5; vertical-align:top; word-break:break-word;
-    }
-    .rtable tbody tr:last-child td{border-bottom:none;}
-
-    /* 모바일: 카드형으로 변환 */
-    @media (max-width: 768px){
-      .grid{grid-template-columns:1fr;}
-      .rtable{border:none; border-radius:0; overflow:visible;}
-      .rtable thead{display:none;}
-      .rtable, .rtable tbody, .rtable tr, .rtable td{display:block; width:100%;}
-      .rtable tbody tr{
-        border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fff; margin-bottom:12px;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>우리들의 북촌 & 군자 여행 기록표</title>
+    <style>
+      body {
+        font-family: 'Malgun Gothic', sans-serif;
+        line-height: 1.6;
+        margin: 20px;
+        background-color: #f4f4f4;
+        color: #333;
       }
-      .rtable tbody td{
-        display:grid; grid-template-columns:110px 1fr; gap:8px;
-        border-bottom:1px solid #f1f3f5;
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
-      .rtable tbody td::before{
-        content:attr(data-label); color:var(--sub); font-weight:600;
+      h1,
+      h2 {
+        color: #5c6bc0;
+        text-align: center;
       }
-      .rtable tbody td:last-child{border-bottom:none;}
-      /* 날짜/시간은 줄바꿈 방지 */
-      .rtable td[data-label="날짜"], .rtable td[data-label="시간"]{white-space:nowrap;}
-    }
+      .section {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #e8eaf6;
+        border-left: 5px solid #3f51b5;
+        border-radius: 4px;
+      }
+      .section h3 {
+        margin-top: 0;
+        color: #3f51b5;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      ul li {
+        background: #fdfdff;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+      .time {
+        font-weight: bold;
+        color: #d32f2f;
+      }
+      .restaurant-list li {
+        font-weight: bold;
+        color: #1b5e20;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>우리들의 북촌 & 군자 여행 기록표</h1>
+      <p style="text-align: center; color: #666">**2024년 7월 26일 (금) ~ 7월 27일 (토)**</p>
 
-    /* 데스크톱 2열 레이아웃 */
-    @media (min-width: 960px){
-      .grid{grid-template-columns:1fr 1.2fr;}
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <section class="card">
-      <div class="hero">
-        <h1>✈️ 여행 일정 기본 폼</h1>
-        <p>공유/기록용 폼입니다. 필요 시 복사해 채워 넣어 사용하세요.</p>
+      <div class="section">
+        <h2>금요일 (7월 26일)</h2>
+        <ul>
+          <li><span class="time">오후 7시:</span> 종로3가 시네마모텔 주변에서 저녁 식사</li>
+          <li><span class="time">오후 10시:</span> 시네마모텔 입성</li>
+        </ul>
       </div>
 
-      <div class="grid">
-        <!-- 왼쪽: 여행 기본 정보 -->
-        <div class="fieldcol">
-          <label>여행 제목
-            <input class="input" type="text" placeholder="예) 오사카 3박4일" />
-          </label>
-
-          <div class="row2">
-            <label>출발일
-              <input class="input" type="date" />
-            </label>
-            <label>도착일
-              <input class="input" type="date" />
-            </label>
-          </div>
-
-          <div class="row2">
-            <label>출발지
-              <input class="input" type="text" placeholder="ICN / Seoul" />
-            </label>
-            <label>도착지
-              <input class="input" type="text" placeholder="KIX / Osaka" />
-            </label>
-          </div>
-
-          <div class="row2">
-            <label>인원
-              <input class="input" type="number" min="1" value="1" />
-            </label>
-            <label>예산(선택)
-              <input class="input" type="text" placeholder="예) 120만원" />
-            </label>
-          </div>
-        </div>
-
-        <!-- 오른쪽: 반응형 일정 표 -->
-        <div>
-          <div class="table-title">날짜별 일정 표</div>
-          <table class="rtable">
-            <thead>
-              <tr>
-                <th>날짜</th>
-                <th>시간</th>
-                <th>일정/장소</th>
-                <th>메모</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td data-label="날짜">YYYY-MM-DD</td>
-                <td data-label="시간">09:00</td>
-                <td data-label="일정/장소">예) 공항 → 호텔 체크인</td>
-                <td data-label="메모">비고</td>
-              </tr>
-              <tr>
-                <td data-label="날짜">YYYY-MM-DD</td>
-                <td data-label="시간">13:00</td>
-                <td data-label="일정/장소">예) 맛집/관광지</td>
-                <td data-label="메모">비고</td>
-              </tr>
-              <tr>
-                <td data-label="날짜">YYYY-MM-DD</td>
-                <td data-label="시간">19:00</td>
-                <td data-label="일정/장소">예) 야경/쇼핑</td>
-                <td data-label="메모">비고</td>
-              </tr>
-            </tbody>
-          </table>
-          <p style="margin:8px 0 0; color:var(--sub); font-size:13px;">필요하면 표 행/열을 늘려서 사용하세요.</p>
-        </div>
+      <div class="section">
+        <h2>토요일 (7월 27일)</h2>
+        <ul>
+          <li><span class="time">오전 8시:</span> 뉴발란스 북촌런 허브에서 러닝 체험</li>
+          <li><span class="time">점심:</span> 군자 영미오리탕에서 식사</li>
+        </ul>
       </div>
-    </section>
-  </div>
-</body>
+
+      <div class="section">
+        <h2>주요 맛집</h2>
+        <ul class="restaurant-list">
+          <li>
+            <a href="#" style="text-decoration: none; color: inherit">종로3가 시네마모텔 주변 맛집</a> (자유롭게 선택)
+          </li>
+          <li><a href="#" style="text-decoration: none; color: inherit">군자 영미오리탕</a></li>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>
